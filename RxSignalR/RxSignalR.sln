@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20617.1 PREVIEW
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RxSignalrWeb", "http://localhost:5687", "{1B0911F0-46B4-4767-8358-494E64FA7DB7}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_5687"
+		Debug.AspNetCompiler.PhysicalPath = "RxSignalrWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5687\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_5687"
+		Release.AspNetCompiler.PhysicalPath = "RxSignalrWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5687\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "RxSignalrWeb\"
+		DefaultWebSiteLanguage = "Visual Basic"
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BasicConsole", "BasicConsole\BasicConsole.vbproj", "{DB4DE111-4C53-43E0-894A-5D3B0C54A782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{B7253637-3CDB-4774-8B4E-9E5E32C32214}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|ARM.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|x64.ActiveCfg = Debug|Any CPU
+		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|x86.ActiveCfg = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|x64.ActiveCfg = Release|Any CPU
+		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
