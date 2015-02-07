@@ -195,6 +195,28 @@
             <param name="context">The utility object to observe the current request and response</param>
             <returns>async completion</returns>
         </member>
+        <member name="T:Microsoft.Owin.Security.AuthenticationTicket">
+            <summary>
+            Contains user identity information as well as additional authentication state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.AuthenticationTicket.#ctor(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.AuthenticationTicket"/> class
+            </summary>
+            <param name="identity"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.AuthenticationTicket.Identity">
+            <summary>
+            Gets the authenticated user identity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.AuthenticationTicket.Properties">
+            <summary>
+            Additional state values for the authentication session.
+            </summary>
+        </member>
         <member name="T:Microsoft.Owin.Security.ICertificateValidator">
             <summary>
             Interface for providing pinned certificate validation, which checks HTTPS 
@@ -272,7 +294,7 @@
             <summary>
             Helper code used when implementing authentication middleware
             </summary>
-            <param name="request"></param>
+            <param name="context"></param>
         </member>
         <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.AddUserIdentity(System.Security.Principal.IIdentity)">
             <summary>
@@ -365,21 +387,6 @@
               Looks up a localized string similar to The state passed to UnhookAuthentication may only be the return value from HookAuthentication..
             </summary>
         </member>
-        <member name="P:Microsoft.Owin.Security.Resources.Warning_CookieNotFound">
-            <summary>
-              Looks up a localized string similar to {0} cookie not found..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.Resources.Warning_CookieStateMismatch">
-            <summary>
-              Looks up a localized string similar to {0} correlation cookie and state property mismatch..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.Resources.Warning_StateNotFound">
-            <summary>
-              Looks up a localized string similar to {0} state property not found..
-            </summary>
-        </member>
         <member name="T:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator">
             <summary>
             Provides pinned certificate validation based on the subject key identifier of the certificate.
@@ -390,6 +397,16 @@
             Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator"/> class.
             </summary>
             <param name="validSubjectKeyIdentifiers">A set of subject key identifiers which are valid for an HTTPS request.</param>
+        </member>
+        <member name="M:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator.Validate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Verifies the remote Secure Sockets Layer (SSL) certificate used for authentication.
+            </summary>
+            <param name="sender">An object that contains state information for this validation.</param>
+            <param name="certificate">The certificate used to authenticate the remote party.</param>
+            <param name="chain">The chain of certificate authorities associated with the remote certificate.</param>
+            <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
+            <returns>A Boolean value that determines whether the specified certificate is accepted for authentication.</returns>
         </member>
         <member name="T:Microsoft.Owin.Security.SubjectPublicKeyInfoAlgorithm">
             <summary>

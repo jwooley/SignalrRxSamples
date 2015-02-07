@@ -6,8 +6,8 @@
 <head runat="server">
     <title></title>
 
-    <script src="Scripts/jquery-2.1.0.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.signalR-2.0.3.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-2.1.3.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js" type="text/javascript"></script>
     <script src="/signalr/hubs" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {

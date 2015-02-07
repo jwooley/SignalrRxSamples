@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22512.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragMvc", "DragDrop\MvcDrag\DragMvc.csproj", "{DE39F1D6-1415-4EA1-AB2C-3DE5D3849C5A}"
 EndProject
@@ -31,6 +31,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RxSignalrWeb", "http://loca
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxSignalrWpf", "RxSignalR\WpfApplication1\RxSignalrWpf.csproj", "{B7253637-3CDB-4774-8B4E-9E5E32C32214}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC4A13A-E045-4F9A-A313-D2F63713AB2E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
