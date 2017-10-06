@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic
+﻿Imports System
+Imports Microsoft.VisualBasic
 
 Public Class SensorData
     Public Property Time As DateTime

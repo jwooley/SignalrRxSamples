@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22512.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragMvc", "DragDrop\MvcDrag\DragMvc.csproj", "{DE39F1D6-1415-4EA1-AB2C-3DE5D3849C5A}"
 EndProject
@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC4A1
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularWeb", "AngularWeb\AngularWeb.csproj", "{73312635-1C08-4636-871F-F4DCC8C7858E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,8 +65,15 @@ Global
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73312635-1C08-4636-871F-F4DCC8C7858E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73312635-1C08-4636-871F-F4DCC8C7858E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73312635-1C08-4636-871F-F4DCC8C7858E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73312635-1C08-4636-871F-F4DCC8C7858E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DAAE9C7-B1F9-4399-A58C-F87FBF70E59F}
 	EndGlobalSection
 EndGlobal
