@@ -8,25 +8,25 @@
 Sub Main
 	Dim sensor = GetSensor()
 	
-	sensor.DumpLive("All Values")
+	sensor.DumpLatest("All Values")
 	
 	Dim Q1 = From s In sensor
 			Where s.SensorValue < 3
 			Select s
 	
-	Q1.DumpLive("Low Value Sensors")
+	Q1.DumpLatest("Low Value Sensors")
 	
 	Dim Q2 = From s In sensor
-			Where s.SensorType = "3"
+			Where s.SensorType = "2"
 			Select s
 			
-	Q2.DumpLive("Type 3 Sensors")
+	Q2.DumpLatest("Type 2 Sensors")
 	
 	Dim Heartbeat = (From s In sensor
 		Where s.SensorType = "2").
 		Buffer(TimeSpan.FromSeconds(3)).
 		Select(Function(b) b.Count * 20).
-		DumpLive("Approximate 2's per minute")
+		DumpLatest("Approximate 2's per minute")
 		
 	Dim GroupTest = 
 		sensor.
