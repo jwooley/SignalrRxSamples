@@ -9,7 +9,7 @@ namespace SignalrAngular.Hubs
         public Task Send(string data)
         {
             var currentUser = new List<string> { Context.ConnectionId };
-            return Clients.AllExcept(currentUser).InvokeAsync("Send", data);
+            return Clients.AllExcept(currentUser).SendAsync("Send", data);
         }
     }
 }

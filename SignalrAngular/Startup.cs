@@ -47,8 +47,8 @@ namespace SignalrAngular
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("hubs/chat");
-                routes.MapHub<SensorHub>("hubs/sensor");
+                routes.MapHub<ChatHub>("/hubs/chat");
+                routes.MapHub<SensorHub>("/hubs/sensor");
             });
 
             app.UseMvc(routes =>

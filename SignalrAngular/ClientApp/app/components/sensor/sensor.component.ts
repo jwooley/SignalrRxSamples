@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { HubConnection } from '@aspnet/signalr-client';
+import { HubConnection } from '@aspnet/signalr';
 
 @Component({
     selector: 'sensor',
@@ -16,6 +16,7 @@ export class SensorComponent implements OnInit {
         this._hubConnection = new HubConnection('/hubs/sensor');
 
         this.subject
+            //.filter(val => val.sensorType === '1')
             .subscribe({
                 next: (value: SensorData) => this.dataStream.push(value),
                 error: function (err) { console.log(err); },
@@ -24,17 +25,17 @@ export class SensorComponent implements OnInit {
 
         this._hubConnection.start()
             .then(() => {
-                //var obs = <Observable<SensorData>>this._hubConnection.stream("Values");
-                //obs.filter(val => val.SensorValue < 7)
-                this._hubConnection.stream("Values")
-                    .filter(value => value.SensorValue < 7)
-                    .subscribe(this.subject);
+                var obs = this._hubConnection.stream<SensorData>("Values").subscribe({
+                    next: val => this.subject.next(val),
+                    error: err => this.subject.error(err),
+                    complete: () => this.subject.complete()
+                });
             });
     }
 }
 
 class SensorData {
-    TimeStamp: Date;
-    SensorType: string;
-    SensorValue: number;
+    timeStamp: Date;
+    sensorType: string;
+    sensorValue: number;
 }
