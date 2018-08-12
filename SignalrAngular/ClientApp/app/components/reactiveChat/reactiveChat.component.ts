@@ -9,9 +9,11 @@ import { FormControl, FormGroup } from '@angular/forms';
     templateUrl: './reactiveChat.component.html'
 })
 export class ReactiveChatComponent implements  OnInit {
-    private _hubConnection: HubConnection;
-    chatForm: FormGroup;
+    private _hubConnection = new HubConnection('/hubs/chat');
     message = new FormControl();
+    chatForm: FormGroup = new FormGroup({
+        message: this.message
+    });
     messages: string[]  = [];
     
     public sendMessage(text: string): void {
@@ -21,9 +23,6 @@ export class ReactiveChatComponent implements  OnInit {
     }
 
     ngOnInit() {
-        this.chatForm = new FormGroup({
-            message: this.message,
-        });
 
         this.message.valueChanges
             .distinctUntilChanged()
@@ -33,7 +32,6 @@ export class ReactiveChatComponent implements  OnInit {
                 this.sendMessage(text);
             });
 
-        this._hubConnection = new HubConnection('/hubs/chat');
         this._hubConnection.on('Send', (data: any) => {
             const received='Received: ' + data;
             this.messages.push(received);

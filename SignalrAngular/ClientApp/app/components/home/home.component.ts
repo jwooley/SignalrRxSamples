@@ -8,7 +8,7 @@ import { HubConnection } from '@aspnet/signalr';
     templateUrl: './home.component.html'
 })
 export class HomeComponent implements  OnInit {
-    private _hubConnection: HubConnection;
+    private _hubConnection = new HubConnection('/hubs/chat');
     message: string = '';
     messages: string[]  = [];
     
@@ -18,7 +18,6 @@ export class HomeComponent implements  OnInit {
         this.messages.push(data);
     }
     ngOnInit() {
-        this._hubConnection = new HubConnection( '/hubs/chat' );
         this._hubConnection.on('Send', (data: any) => {
             const received='Received: ' + data;
             this.messages.push(received);

@@ -8,15 +8,13 @@ import { HubConnection } from '@aspnet/signalr';
     templateUrl:'./sensor.component.html'
 })
 export class SensorComponent implements OnInit {
-    private _hubConnection: HubConnection;
+    private _hubConnection = new HubConnection('/hubs/sensor');
     dataStream: SensorData[] = [];
     subject: BehaviorSubject<SensorData> = new BehaviorSubject<SensorData>(new SensorData());
 
     ngOnInit() {
-        this._hubConnection = new HubConnection('/hubs/sensor');
-
         this.subject
-            //.filter(val => val.sensorType === '1')
+            .filter(val => val.sensorType === '1')
             .subscribe({
                 next: (value: SensorData) => this.dataStream.push(value),
                 error: function (err) { console.log(err); },
