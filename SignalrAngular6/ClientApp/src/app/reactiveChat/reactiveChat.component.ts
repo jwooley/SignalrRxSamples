@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { FormControl, FormGroup } from '@angular/forms';
