@@ -1,3 +1,4 @@
+using angularCore.Hubs;
 using AngularCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,7 @@ namespace angularCore
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/hubs/chat");
+                routes.MapHub<SensorHub>("/hubs/sensor");
             });
 
             app.UseSpaStaticFiles();

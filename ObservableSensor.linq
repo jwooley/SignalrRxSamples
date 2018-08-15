@@ -1,6 +1,6 @@
 <Query Kind="VBProgram">
   <Reference>&lt;RuntimeDirectory&gt;\System.Runtime.dll</Reference>
-  <NuGetReference>Rx-Main</NuGetReference>
+  <NuGetReference>System.Reactive</NuGetReference>
   <Namespace>System.Reactive.Linq</Namespace>
   <Namespace>System.Runtime</Namespace>
 </Query>

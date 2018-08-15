@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { HubConnection } from '@aspnet/signalr';
+import { HubConnectionBuilder } from '@aspnet/signalr';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     templateUrl: './reactiveChat.component.html'
 })
 export class ReactiveChatComponent implements  OnInit {
-    private _hubConnection = new HubConnection('/hubs/chat');
+    private _hubConnection = new HubConnectionBuilder().withUrl('/hubs/chat').build();
     message = new FormControl();
     chatForm: FormGroup = new FormGroup({
         message: this.message

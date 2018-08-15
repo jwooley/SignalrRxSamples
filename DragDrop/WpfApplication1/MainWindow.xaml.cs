@@ -91,7 +91,11 @@ namespace WpfApplication1
             var query = from startLocation in mouseDown
                         from endLocation in mouseMove
                         .TakeUntil(mouseUp)
-                        select new {x= Convert.ToInt32( endLocation.X - startLocation.X), y = Convert.ToInt32(endLocation.Y - startLocation.Y)};
+                        select new
+                        {
+                            x = Convert.ToInt32( endLocation.X - startLocation.X),
+                            y = Convert.ToInt32(endLocation.Y - startLocation.Y)
+                        };
 
             query.Subscribe(position =>
                 {
@@ -99,7 +103,8 @@ namespace WpfApplication1
                     Canvas.SetTop(myShape, position.y);
                 });
 
-            query.Throttle(TimeSpan.FromMilliseconds(250)).Subscribe(position => proxy.Invoke("ItemDragged",position.x, position.y));
+            query.Throttle(TimeSpan.FromMilliseconds(250))
+                .Subscribe(position => proxy.Invoke("ItemDragged",position.x, position.y));
         }
 
         private void myShape_MouseMove(object sender, MouseEventArgs e)

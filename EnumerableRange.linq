@@ -1,13 +1,12 @@
 <Query Kind="Statements">
-  <NuGetReference>Ix-Async</NuGetReference>
-  <NuGetReference>Ix-Main</NuGetReference>
-  <NuGetReference>Rx-Main</NuGetReference>
+  <NuGetReference>System.Interactive</NuGetReference>
+  <NuGetReference>System.Reactive</NuGetReference>
   <Namespace>System.Collections.Generic</Namespace>
   <Namespace>System.Collections.ObjectModel</Namespace>
   <Namespace>System.Linq</Namespace>
+  <Namespace>System.Reactive.Concurrency</Namespace>
   <Namespace>System.Reactive.Linq</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
-  <Namespace>System.Reactive.Concurrency</Namespace>
 </Query>
 
 var sw = new Stopwatch();

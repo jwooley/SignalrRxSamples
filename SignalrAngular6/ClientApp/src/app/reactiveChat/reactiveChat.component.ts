@@ -29,7 +29,7 @@ export class ReactiveChatComponent implements OnInit {
       this.message.valueChanges
         .pipe(
           distinctUntilChanged(),
-          debounceTime(500),
+          debounceTime(1000),
           filter(t => t !== 'foo')
         ).subscribe(text => {
           this.sendMessage(text);

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { HubConnection } from '@aspnet/signalr';
+import { HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html'
 })
 export class HomeComponent implements  OnInit {
-    private _hubConnection = new HubConnection('/hubs/chat');
+    private _hubConnection = new HubConnectionBuilder().withUrl('/hubs/chat').build();
     message: string = '';
     messages: string[]  = [];
     
