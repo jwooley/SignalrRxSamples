@@ -6,10 +6,10 @@ namespace AngularCore
 {
     public class ChatHub : Hub
     {
-        public Task Send(string data)
+        public async Task Send(string data)
         {
             var currentUser = new List<string> {Context.ConnectionId};
-            Clients.AllExcept(currentUser).SendAsync("Send", data);
+            await Clients.AllExcept(currentUser).SendAsync("Send", data);
         }
     }
 }
