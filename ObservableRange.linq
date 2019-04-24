@@ -10,16 +10,15 @@
 var sw = new Stopwatch();
 sw.Start();
 
-var query = Enumerable.Range(1, 10)
+var query = Observable.Range(1, 10)
 	.Where(num => num % 2 == 0)
+	.ObserveOn(TaskPoolScheduler.Default)
 	.Do(num => Task.Delay((10 - num) * 200).Wait());
 
-foreach (var num in query)
-{
-	Console.WriteLine(num);
-}
+query.Subscribe(num => Console.WriteLine(num),
+   () => Console.WriteLine("Elapsed Time: " + sw.ElapsedTicks)
+);
 
-Console.WriteLine("Elapsed Time: " + sw.ElapsedTicks);
 Console.WriteLine("Done. You can continue working.");
 
 
