@@ -11,7 +11,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 export class SensorComponent implements OnInit {
     private _hubConnection = new HubConnectionBuilder().withUrl('/hubs/sensor').build();
     dataStream: ISensorData[] = [];
-    subject: BehaviorSubject<ISensorData> = new BehaviorSubject<ISensorData>({timeStamp: new Date(), sensorType: "", sensorValue: 0});
+    subject: BehaviorSubject<ISensorData> = new BehaviorSubject<ISensorData>({timeStamp: new Date(), sensorType: '', sensorValue: 0});
 
     ngOnInit() {
         this.subject.pipe(
@@ -19,12 +19,12 @@ export class SensorComponent implements OnInit {
             .subscribe({
                 next: (value: ISensorData) => this.dataStream.push(value),
                 error: function (err) { console.log(err); },
-                complete: () => console.log("done")
+                complete: () => console.log('done')
             });
 
         this._hubConnection.start()
             .then(() => {
-                var obs = this._hubConnection.stream<ISensorData>("Values").subscribe({
+                this._hubConnection.stream<ISensorData>('Values').subscribe({
                     next: val => this.subject.next(val),
                     error: err => this.subject.error(err),
                     complete: () => this.subject.complete()
