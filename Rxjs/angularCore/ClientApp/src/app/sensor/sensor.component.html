@@ -1,0 +1,7 @@
+<div class="container-fluid">
+
+    <h1>Sensor Values</h1>
+    <ul>
+      <li *ngFor="let data of dataStream">Type {{data.sensorType}} - Value {{data.sensorValue}} received on {{data.timeStamp}}</li>
+    </ul>
+</div>

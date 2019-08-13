@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>5-2 timer.zip</title>
+</head> 
+<body>
+  <a href='https://jsbin.com/xoyazol/edit?html,console'>Test demo</a>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.0.3/dist/global/Rx.js"></script>
+    <script>
+
+var obs = Rx.Observable.from([1,2,3,4,5,6,7,8,9,10]);
+var timer = Rx.Observable.timer(0,500);
+
+var evens = obs
+  .zip(timer)
+  .map(n => n[0])
+ //.flatMap(() => timer, (n,t) => n)
+  .filter(n => n % 2 === 0)
+  .do(n => console.log('detected: ' + n))
+  .publish();
+
+
+var sub1 = evens.subscribe(n => console.log(n));
+setTimeout(() => evens.subscribe(n => console.log('2: ' + n)), 3000);
+
+evens.connect();
+
+</script>
+
+  </body>
+</html>

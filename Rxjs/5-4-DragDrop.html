@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Drag Drop</title>
+<style>
+
+  #box {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    height:100px; 
+    width:100px;
+    color:green;
+    background-color:cyan;
+  }
+  </style>
+  </head> 
+<body>
+    <a href='https://jsbin.com/gigayis/edit?html,output'>Try Demo</a>
+    <div id='box' />
+
+    <script src="https://unpkg.com/@reactivex/rxjs@5.0.3/dist/global/Rx.js"></script>
+    <script>
+        const box = document.getElementById('box');
+        var mouseEventToCoordinate = mouseEvent => {
+            mouseEvent.preventDefault();
+            return {
+                x: mouseEvent.clientX, 
+                y: mouseEvent.clientY
+            };
+        };
+
+        var mouseEventOffset = mouseEvent => {
+            mouseEvent.preventDefault();
+            return {
+                x: mouseEvent.offsetX, 
+                y: mouseEvent.offsetY
+            };
+        };
+
+        //for every keyup, map to current input value
+        var mouseDown$ = Rx.Observable.fromEvent(box, 'mousedown')
+            //.do(_ => console.log('down'))
+            .map(mouseEventOffset);
+
+        var mouseMove$ = Rx.Observable.fromEvent(window, 'mousemove')
+            .map(mouseEventToCoordinate);
+
+        var mouseUp$ = Rx.Observable.fromEvent(window, 'mouseup');
+
+        var move$ = mouseDown$
+            .flatMap(down => mouseMove$.map(move => {
+                return {x:move.x-down.x, y:move.y-down.y};
+            }).takeUntil(mouseUp$)
+        );         
+
+        var sub = move$.subscribe(pos => {
+            box.style.top = pos.y + 'px';
+            box.style.left = pos.x + 'px';
+        });
+        var sub2 = move$.map(change => change.x > change.y ? "blue" : "red")
+            .subscribe(color => box.style.backgroundColor = color);
+
+
+    </script>
+
+  </body>
+</html>
