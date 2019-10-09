@@ -25,7 +25,7 @@ export class SensorComponent implements OnInit {
 
         this._hubConnection.start()
           .then(() => {
-                var obs = this._hubConnection.stream<ISensorData[]>("Values").subscribe({
+                var obs = this._hubConnection.stream<ISensorData>('Values').subscribe({
                     next: val => this.subject.next(val),
                     error: err => this.subject.error(err),
                     complete: () => this.subject.complete()

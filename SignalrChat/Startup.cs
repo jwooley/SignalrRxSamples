@@ -22,9 +22,8 @@ namespace angularCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //services.AddSignalR();
 
-            services.AddSignalR().AddAzureSignalR();
+            services.AddSignalR();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -49,12 +48,9 @@ namespace angularCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAzureSignalR(routes =>
-
-            //app.UseSignalR(routes =>
+            app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/hubs/chat");
-                routes.MapHub<SensorHub>("/hubs/sensor");
             });
 
             app.UseSpaStaticFiles();

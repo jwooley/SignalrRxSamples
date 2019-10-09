@@ -6,7 +6,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
     selector: 'sensor',
-    templateUrl:'./sensor.component.html'
+    templateUrl: './sensor.component.html'
 })
 export class SensorComponent implements OnInit {
     private _hubConnection = new HubConnectionBuilder().withUrl('/hubs/sensor').build();

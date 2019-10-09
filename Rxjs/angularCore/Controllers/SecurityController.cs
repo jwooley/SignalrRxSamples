@@ -11,7 +11,7 @@ namespace angularCore.Controllers
         [Route("api/Security/UserPermissions")]
         public async Task<IEnumerable<string>> UserPermissions()
         {
-            await Task.Delay(2000);
+            await Task.Delay(5000);
             // Would come from a datastore or credentials. Sending hardcoded values for demo purposes
             return new string[]
             {

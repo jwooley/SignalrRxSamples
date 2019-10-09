@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export class SecurityService {
 
   public hasPermission$(permission: string): Observable<boolean> {
     if (!securityCache) {
-      securityCache = new ReplaySubject(1);
+      securityCache = new ReplaySubject(0);
       this.getPermissions$().subscribe(securityCache);
     }
     return securityCache.pipe(

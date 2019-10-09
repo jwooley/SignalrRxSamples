@@ -4,9 +4,12 @@
   <div>
     <form [formGroup]="userForm" *ngIf="user$ | async as user; else loading">
       Status - {{user.statusDescription}}<br />
+
       <!--<input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" /><br />
-  <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" /><br />
-  <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" /><br />-->
+      <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" /><br />
+      <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" /><br />-->
+
+
       <input type="text" formControlName="firstName" name="firstName" placeholder="First Name" /><br />
       <input type="text" formControlName="lastName" name="lastName" placeholder="Last Name" /><br />
       <input type="password" formControlName="password" name="password" placeholder="Password" /><br />

@@ -29,14 +29,14 @@ export class ReactiveChatComponent implements OnInit {
       message: this.message,
     });
 
-    this.message.valueChanges
-      .pipe(
-        distinctUntilChanged(),
-        debounceTime(500),
-        filter(t => t !== 'foo')
-      ).subscribe(text => {
-        this.sendMessage(text);
-      });
+    //this.message.valueChanges
+    //  .pipe(
+    //    distinctUntilChanged(),
+    //    debounceTime(500),
+    //    filter(t => t !== 'foo')
+    //  ).subscribe(text => {
+    //    this.sendMessage(text);
+    //  });
 
 
     this._hubConnection.start()
