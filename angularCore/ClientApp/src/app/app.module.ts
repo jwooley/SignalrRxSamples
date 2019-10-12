@@ -12,7 +12,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ReactiveChatComponent } from './reactiveChat/reactiveChat.component';
 import { SensorComponent } from './sensor/sensor.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropComponent } from './dragDrop/dragDrop.component';
 
 @NgModule({
   declarations: [
@@ -22,19 +23,22 @@ import { SensorComponent } from './sensor/sensor.component';
     CounterComponent,
     FetchDataComponent,
     ReactiveChatComponent,
-    SensorComponent
+        SensorComponent,
+    DragDropComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+      ReactiveFormsModule,
+    DragDropModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'reactiveChat', component: ReactiveChatComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'sensor', component: SensorComponent}
+        { path: 'sensor', component: SensorComponent },
+      { path: 'dragdrop', component: DragDropComponent }
     ])
   ],
   providers: [],

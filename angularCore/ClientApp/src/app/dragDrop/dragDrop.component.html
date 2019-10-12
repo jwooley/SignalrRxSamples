@@ -1,0 +1,15 @@
+<style>
+  .drag-box {
+    height: 100px;
+    width: 100px;
+    background-color: azure;
+    cursor: move;
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="drag-box" style="position:absolute"
+       [ngStyle]="{'top.px': pointerPositionY, 'left.px': pointerPositionX}" cdkDrag
+       (cdkDragMoved)="dragMoved($event)">Drag me</div>
+</div>
+<p>x: {{pointerPositionX}}, y: {{pointerPositionY}}</p>
