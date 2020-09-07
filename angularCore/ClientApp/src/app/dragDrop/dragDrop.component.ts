@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 @Component({
     selector: 'app-dragdrop',

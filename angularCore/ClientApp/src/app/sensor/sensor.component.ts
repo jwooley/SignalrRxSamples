@@ -2,7 +2,7 @@
 import {filter} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Observable ,  BehaviorSubject } from 'rxjs';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 @Component({
     selector: 'sensor',
