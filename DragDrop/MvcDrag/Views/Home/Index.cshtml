@@ -12,29 +12,29 @@
 </style>
 
 <div id="shape">
-    
+
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
-    <script src="/signalr/hubs"></script>
-
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/microsoft-signalr/signalr.js"></script>
     <script type="text/javascript">
         $(function () {
             var shape = $("#shape"),
-                hub = $.connection.myDrag;
+                hub = new signalR.HubConnectionBuilder()
+                    .withUrl("/mydrag")
+                    .build();
 
-            hub.client.onDrag = function (val) {
-                shape.css({ top: val.Y, left: val.X });
-            };
+            hub.on("onDrag", function (val) {
+                shape.css({ top: val.y, left: val.x });
+            });
 
-            hub.connection.start()
-                .done(function () {
+            hub.start()
+                .then(function () {
                     shape.draggable({
                         drag: function () {
-                            hub.server.itemDragged(this.offsetLeft, this.offsetTop);
+                            hub.invoke("ItemDragged", this.offsetLeft, this.offsetTop);
                         }
                     });
                 });

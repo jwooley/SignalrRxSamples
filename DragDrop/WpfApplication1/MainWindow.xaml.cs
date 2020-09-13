@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Hubs;
+﻿
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,70 +16,70 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        IHubProxy proxy;
         HubConnection cn;
 
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            cn = new HubConnection("http://localhost:1931");
-            proxy = cn.CreateHubProxy("myDrag");
+        protected async override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            cn = new HubConnectionBuilder()
+                .WithUrl("https://localhost:5001/myDrag")
+                .WithAutomaticReconnect()
+                .Build();
+            await cn.StartAsync();
 
-       
+            cn.Closed += async (error) =>
+            {
+                await Task.Delay(1000);
+                await cn.StartAsync();
+            };
+
             ConfigureSignalR();
             ConfigureRx();
             ConfigureRxComplex();
-
-            cn.Start();
-
             SetupDrag();
         }
 
         private void ConfigureSignalR()
         {
-            proxy.On("onDrag", val =>
+            cn.On<Coord>("onDrag", val =>
             {
-                double x = val.X;
-                double y = val.Y;
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    Canvas.SetLeft(myShape, x);
-                    Canvas.SetTop(myShape, y);
-                }));
+                Canvas.SetLeft(myShape, val.x);
+                Canvas.SetTop(myShape, val.y);
             });
-
         }
 
         private void ConfigureRx()
         {
-            proxy.Observe("onDrag").Delay(TimeSpan.FromMilliseconds(250))
-                .Select(tokens => (dynamic)tokens[0])
+            cn.AsObservable<Coord>("onDrag")
+                .Delay(TimeSpan.FromMilliseconds(250))
                 .ObserveOnDispatcher()
-                .Subscribe(pos =>
+                .Subscribe(val =>
                 {
-                    Canvas.SetLeft(myShape2, (double)(pos.X));
-                    Canvas.SetTop(myShape2, (double)(pos.Y));
+                    Canvas.SetLeft(myShape2, val.x);
+                    Canvas.SetTop(myShape2, val.y);
                 });
         }
 
         private void ConfigureRxComplex()
         {
-            proxy.Observe("onDrag")
-                .Select(tokens => (dynamic)tokens[0])
+            cn.AsObservable<Coord>("onDrag")
                 .Delay(TimeSpan.FromMilliseconds(250))
                 .ObserveOnDispatcher()
                 .Subscribe(pos =>
                 {
-                    Canvas.SetLeft(myShape3, (double)(pos.X));
-                    Canvas.SetTop(myShape3, (double)(pos.Y));
-                    byte colorVal = Convert.ToByte(Math.Abs(Math.Sin(((int)(pos.X) + (int)pos.Y)) * 128) + 127);
+                    Canvas.SetLeft(myShape3, pos.x);
+                    Canvas.SetTop(myShape3, pos.y);
+                    byte colorVal = Convert.ToByte(Math.Abs(Math.Sin(((int)(pos.x) + (int)pos.y)) * 128) + 127);
 
                     var brush = new SolidColorBrush(Color.FromRgb(colorVal, 0, 0));
                     var b2 = new RadialGradientBrush(Color.FromRgb(colorVal, 0, 0), Color.FromRgb(255, 255, 255));
                     myShape.Fill = b2;
                 });
-
         }
 
         private void SetupDrag()
@@ -93,7 +95,7 @@ namespace WpfApplication1
                         .TakeUntil(mouseUp)
                         select new
                         {
-                            x = Convert.ToInt32( endLocation.X - startLocation.X),
+                            x = Convert.ToInt32(endLocation.X - startLocation.X),
                             y = Convert.ToInt32(endLocation.Y - startLocation.Y)
                         };
 
@@ -104,12 +106,23 @@ namespace WpfApplication1
                 });
 
             query.Throttle(TimeSpan.FromMilliseconds(250))
-                .Subscribe(position => proxy.Invoke("ItemDragged",position.x, position.y));
+                .Subscribe(position => cn.InvokeAsync("ItemDragged", position.x, position.y));
         }
+    }
 
-        private void myShape_MouseMove(object sender, MouseEventArgs e)
+    public static class ObservableExtensions
+    {
+        public static IObservable<T> AsObservable<T>(this HubConnection connection, string methodName)
         {
-            //proxy.Invoke("ItemDragged", e.GetPosition(this).X, e.GetPosition(this).Y);
+            var subject = new Subject<T>();
+            connection.On<T>(methodName, (val) => subject.OnNext(val));
+
+            return subject;
         }
+    }
+    public class Coord
+    {
+        public int x { get; set; }
+        public int y { get; set; }
     }
 }

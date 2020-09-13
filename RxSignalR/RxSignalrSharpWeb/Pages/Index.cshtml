@@ -1,0 +1,23 @@
+﻿@page
+@{
+    ViewData["Title"] = "Sensor";
+}
+
+<div class="text-center">
+    <h1>Sensor Values</h1>
+    <ul id="values" />
+</div>
+
+<script src="~/lib/microsoft-signalr/signalr.js"></script>
+<script type="text/javascript">
+    var cn = new signalR.HubConnectionBuilder()
+        .withUrl("/hub/sensor")
+        .build();
+
+    cn.start();
+    cn.stream("Values").subscribe(
+        value => {
+        document.getElementById('values')
+            .prepend('<li>' + value.Time + ': ' + value.Value + '</li>');
+        });
+</script>

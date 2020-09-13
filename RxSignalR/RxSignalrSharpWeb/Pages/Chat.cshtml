@@ -1,0 +1,26 @@
+﻿@page
+<input type="text" id="msg" />
+<input type="button" id="broadcast" value="broadcast" />
+
+<ul id="messages">
+</ul>
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/microsoft-signalr/signalr.js"></script>
+
+<script type="text/javascript">
+    var cn = new signalR.HubConnectionBuilder()
+        .withUrl("hub/chat")
+        .build();
+
+    cn.on("addMessage", function (message) {
+        $('#messages').append('<li>' + message + '</li>');
+    });
+
+    cn.start()
+        .then(function () {
+            $("#broadcast").click(function () {
+                // Call the chat method on the server
+                cn.invoke("Send", $('#msg').val());
+            });
+        });
+</script>

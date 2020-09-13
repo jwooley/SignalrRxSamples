@@ -25,6 +25,7 @@ bin/
 Bin/
 obj/
 Obj/
+wwwroot/lib/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -181,7 +182,7 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-/node_modules
+node_modules/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -231,3 +232,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+**/wwwroot/lib

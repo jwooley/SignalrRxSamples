@@ -1,20 +1,7 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Hubs;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApplication1
 {
@@ -23,29 +10,31 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<dynamic> chatItems;
-        IHubProxy proxy;
+        ObservableCollection<string> chatItems;
         HubConnection cn;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            chatItems = new ObservableCollection<dynamic>();
+        }
+        protected async override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            chatItems = new ObservableCollection<string>();
             ChatResults.ItemsSource = chatItems;
 
-            cn = new HubConnection("http://localhost:5687/");
-            proxy = cn.CreateHubProxy("Chat");
+            cn = new HubConnectionBuilder()
+                .WithUrl("https://localhost:5001/Hub/Chat")
+                .Build();
+            await cn.StartAsync();
 
-            proxy.On("AddMessage", message => 
-                Dispatcher.Invoke(new Action(() => chatItems.Add(message))));
-
-            cn.Start();
+            cn.On<string>("addMessage", message => 
+                chatItems.Add(message));
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            await proxy.Invoke("Send", Input.Text);
+            await cn.InvokeAsync("Send", Input.Text);
         }
     }
 }

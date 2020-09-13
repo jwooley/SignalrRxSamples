@@ -1,34 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30428.66
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragMvc", "DragDrop\MvcDrag\DragMvc.csproj", "{DE39F1D6-1415-4EA1-AB2C-3DE5D3849C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragMvc", "DragDrop\MvcDrag\DragMvc.csproj", "{DE39F1D6-1415-4EA1-AB2C-3DE5D3849C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragWpf", "DragDrop\WpfApplication1\DragWpf.csproj", "{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RxSignalrConsole", "RxSignalR\BasicConsole\RxSignalrConsole.vbproj", "{DB4DE111-4C53-43E0-894A-5D3B0C54A782}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RxSignalrWeb", "http://localhost:5687", "{1B0911F0-46B4-4767-8358-494E64FA7DB7}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_5687"
-		Debug.AspNetCompiler.PhysicalPath = "RxSignalR\RxSignalrWeb\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5687\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_5687"
-		Release.AspNetCompiler.PhysicalPath = "RxSignalR\RxSignalrWeb\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5687\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "RxSignalR\RxSignalrWeb\"
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragWpf", "DragDrop\WpfApplication1\DragWpf.csproj", "{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxSignalrWpf", "RxSignalR\WpfApplication1\RxSignalrWpf.csproj", "{B7253637-3CDB-4774-8B4E-9E5E32C32214}"
 EndProject
@@ -36,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC4A1
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpConsole", "RxSignalR\SharpConsole\SharpConsole.csproj", "{2D53F4A5-73A3-4FD5-9C7A-E415319EB9B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxSignalrSharpWeb", "RxSignalR\RxSignalrSharpWeb\RxSignalrSharpWeb.csproj", "{6B7EB6EE-9EA8-4291-94BF-006B54FE2C2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,18 +32,18 @@ Global
 		{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB4DE111-4C53-43E0-894A-5D3B0C54A782}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B0911F0-46B4-4767-8358-494E64FA7DB7}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7253637-3CDB-4774-8B4E-9E5E32C32214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D53F4A5-73A3-4FD5-9C7A-E415319EB9B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D53F4A5-73A3-4FD5-9C7A-E415319EB9B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D53F4A5-73A3-4FD5-9C7A-E415319EB9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D53F4A5-73A3-4FD5-9C7A-E415319EB9B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7EB6EE-9EA8-4291-94BF-006B54FE2C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7EB6EE-9EA8-4291-94BF-006B54FE2C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7EB6EE-9EA8-4291-94BF-006B54FE2C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7EB6EE-9EA8-4291-94BF-006B54FE2C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
