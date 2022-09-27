@@ -11,13 +11,17 @@
 <script src="~/lib/microsoft-signalr/signalr.js"></script>
 <script type="text/javascript">
     var cn = new signalR.HubConnectionBuilder()
-        .withUrl("/hub/sensor")
+        .withUrl("/streamHub")
         .build();
 
+    cn.stream("Values").subscribe({
+        next: (value) => {
+            document.getElementById('vs')
+                .prepend('<li>' + value.Time + ': ' + value.Value + '</li>');
+        },
+        complete: () =>{},
+        error: () => { }
+    });
     cn.start();
-    cn.stream("Values").subscribe(
-        value => {
-        document.getElementById('values')
-            .prepend('<li>' + value.Time + ': ' + value.Value + '</li>');
-        });
+
 </script>

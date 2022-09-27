@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RxSignalrSharpWeb.Hubs;
+using SignalRChat.Hubs;
 
 namespace RxSignalrSharpWeb
 {
@@ -51,7 +52,8 @@ namespace RxSignalrSharpWeb
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<SensorHub>("hub/sensor");
+                endpoints.MapHub<SensorHub>("/sensor");
+                endpoints.MapHub<StreamHub>("/streamHub");
                 endpoints.MapHub<ChatHub>("hub/chat");
                 endpoints.MapRazorPages();
             });

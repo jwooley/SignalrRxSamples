@@ -12,7 +12,26 @@ namespace RxSignalrSharpWeb.Hubs
     public class SensorHub : Hub
     {
         private static IObservable<SensorData> _Sensor = null;
+        public IAsyncEnumerable<SensorData> Vs()
+        {
+            if (_Sensor == null)
+            {
+                var rand = new Random(DateTime.Now.Millisecond);
+                _Sensor = Observable.Generate(
+                    initialState: 0.0,
+                    condition: x => true,
+                    iterate: inVal => rand.NextDouble(),
+                    resultSelector: val => new SensorData
+                    {
+                        TimeStamp = DateTime.Now,
+                        SensorType = (Math.Floor(val * 4) + 1).ToString(),
+                        SensorValue = val * 20
+                    },
+                    timeSelector: val => TimeSpan.FromMilliseconds(val * 1000));
+            }
+            return _Sensor.ToAsyncEnumerable();
 
+        }
         public ChannelReader<SensorData> Values(CancellationToken cancellationToken)
         {
             if (_Sensor == null)

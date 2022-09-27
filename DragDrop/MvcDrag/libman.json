@@ -3,7 +3,7 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "jquery@3.5.1",
+      "library": "jquery@3.6.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -14,11 +14,11 @@
       ]
     },
     {
-      "library": "twitter-bootstrap@4.5.2",
+      "library": "twitter-bootstrap@5.2.1",
       "destination": "wwwroot/lib/twitter-bootstrap/"
     },
     {
-      "library": "microsoft-signalr@3.1.8",
+      "library": "microsoft-signalr@6.0.9",
       "destination": "wwwroot/lib/microsoft-signalr/"
     }
   ]
