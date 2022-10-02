@@ -52,7 +52,7 @@ namespace RxSignalrSharpWeb
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<SensorHub>("/sensor");
+                endpoints.MapHub<SensorHub>("/sensorHub");
                 endpoints.MapHub<StreamHub>("/streamHub");
                 endpoints.MapHub<ChatHub>("hub/chat");
                 endpoints.MapRazorPages();

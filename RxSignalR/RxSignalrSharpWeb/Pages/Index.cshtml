@@ -3,25 +3,27 @@
     ViewData["Title"] = "Sensor";
 }
 
-<div class="text-center">
-    <h1>Sensor Values</h1>
-    <ul id="values" />
-</div>
+<h1>Sensor Values</h1>
+<ul id="values" />
 
 <script src="~/lib/microsoft-signalr/signalr.js"></script>
 <script type="text/javascript">
-    var cn = new signalR.HubConnectionBuilder()
-        .withUrl("/streamHub")
+    var connection = new signalR.HubConnectionBuilder()
+        .withUrl("/SensorHub")
         .build();
 
-    cn.stream("Values").subscribe({
-        next: (value) => {
-            document.getElementById('vs')
-                .prepend('<li>' + value.Time + ': ' + value.Value + '</li>');
-        },
-        complete: () =>{},
-        error: () => { }
-    });
-    cn.start();
-
+    const valuesElement = document.getElementById('values');
+    connection
+        .start()
+        .then(() => {
+            connection.stream("Values").subscribe({
+                next: (value) => {
+                    var li = document.createElement("li");
+                    li.textContent = `Type: ${value.sensorType}    Value: ${value.sensorValue}   at  ${value.timeStamp}`;
+                    valuesElement.prepend(li);
+                },
+                complete: () => { },
+                error: () => { }
+            });
+        });
 </script>

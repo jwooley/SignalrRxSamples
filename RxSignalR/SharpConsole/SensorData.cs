@@ -8,8 +8,8 @@ namespace SharpConsole
 {
     class SensorData
     {
-        public DateTime Time { get; set; }
-        public string Category { get; set; }
-        public double Value { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public string SensorType { get; set; }
+        public double SensorValue { get; set; }
     }
 }

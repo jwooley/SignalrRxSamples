@@ -11,18 +11,18 @@ namespace SharpConsole
         static async Task Main(string[] args)
         {
             var cn = new HubConnectionBuilder()
-                .WithUrl("https://localhost:5001/hub/sensor")
+                .WithUrl("https://localhost:5001/sensorHub")
                 .WithAutomaticReconnect()
                 .Build();
 
             await cn.StartAsync();
 
             var items = 
-                from sensor in cn.AsObservable<SensorData>("broadcast")
-                where sensor.Value < 5
+                from sensor in cn.AsObservable<SensorData>("Values")
+                where sensor.SensorValue < 5
                 select sensor;
 
-            items.Subscribe(sensor => Console.WriteLine(sensor.Value));
+            items.Subscribe(sensor => Console.WriteLine(sensor.SensorValue));
 
             Console.WriteLine("Receiving Values. Press any key to exit.");
             Console.ReadLine();
