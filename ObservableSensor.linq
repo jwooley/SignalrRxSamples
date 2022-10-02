@@ -31,8 +31,9 @@ Sub Main
 	Dim GroupTest = 
 		sensor.
 		GroupBy(Function(s) s.SensorType).
-		Select(Function(s) s.DumpLive($"Latest for key: {s.Key}")).
-		DumpLive("Grouped")
+		Select(Function(s) s.DumpLatest($"Latest for key: {s.Key}")).
+		Subscribe()
+		
 			
 End Sub
 

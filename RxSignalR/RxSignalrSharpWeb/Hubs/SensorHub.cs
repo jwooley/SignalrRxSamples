@@ -11,9 +11,7 @@ namespace RxSignalrSharpWeb.Hubs
 {
     public class SensorHub : Hub
     {
-        private static IObservable<SensorData> _Sensor = null;
-
-        public ChannelReader<SensorData> Values(CancellationToken cancellationToken)
+        public SensorHub()
         {
             if (_Sensor == null)
             {
@@ -28,52 +26,25 @@ namespace RxSignalrSharpWeb.Hubs
                         SensorType = (Math.Floor(val * 4) + 1).ToString(),
                         SensorValue = val * 20
                     },
-                    timeSelector: val => TimeSpan.FromMilliseconds(val * 1000));
+                    timeSelector: val => TimeSpan.FromMilliseconds(val * 1000))
+                    .Publish()
+                    .AutoConnect(1);
             }
-            return _Sensor.AsChannelReader(cancellationToken);
         }
+        private static IObservable<SensorData> _Sensor = null;
 
-        public ChannelReader<int> Counter(
-            int count,
-            int delay,
-            CancellationToken cancellationToken)
+        public IAsyncEnumerable<SensorData> Values()
         {
-            var channel = Channel.CreateUnbounded<int>();
-
-            // We don't want to await WriteItemsAsync, otherwise we'd end up waiting 
-            // for all the items to be written before returning the channel back to
-            // the client.
-            _ = WriteItemsAsync(channel.Writer, count, delay, cancellationToken);
-
-            return channel.Reader;
+            return _Sensor.ToAsyncEnumerable();
         }
-
-        private async Task WriteItemsAsync(
-            ChannelWriter<int> writer,
-            int count,
-            int delay,
-            CancellationToken cancellationToken)
+        public ChannelReader<SensorData> Vs()
         {
-            Exception localException = null;
-            try
-            {
-                for (var i = 0; i < count; i++)
-                {
-                    await writer.WriteAsync(i, cancellationToken);
+            var cts = new CancellationTokenSource();
 
-                    // Use the cancellationToken in other APIs that accept cancellation
-                    // tokens so the cancellation can flow down to them.
-                    await Task.Delay(delay, cancellationToken);
-                }
-            }
-            catch (Exception ex)
-            {
-                localException = ex;
-            }
-
-            writer.Complete(localException);
+            return _Sensor.Where(s => s.SensorType == "1")
+                .AsChannelReader(cts.Token);
         }
-    }
+    }         
 
     public static class ObservableExtensions
     {
@@ -96,7 +67,7 @@ namespace RxSignalrSharpWeb.Hubs
                                 () => channel.Writer.TryComplete());
 
             // Complete the subscription on the reader completing
-            channel.Reader.Completion.ContinueWith(task => disposable.Dispose());
+            //channel.Reader.Completion.ContinueWith(task => disposable.Dispose());
 
             return channel.Reader;
         }

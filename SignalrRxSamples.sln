@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30428.66
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragMvc", "DragDrop\MvcDrag\DragMvc.csproj", "{DE39F1D6-1415-4EA1-AB2C-3DE5D3849C5A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragWpf", "DragDrop\WpfApplication1\DragWpf.csproj", "{4DA1668B-DF2E-49B3-82C7-1D12092A1F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxSignalrWpf", "RxSignalR\WpfApplication1\RxSignalrWpf.csproj", "{B7253637-3CDB-4774-8B4E-9E5E32C32214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxSignalrWpf", "RxSignalR\WpfApplication1\RxSignalrWpf.csproj", "{B7253637-3CDB-4774-8B4E-9E5E32C32214}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC4A13A-E045-4F9A-A313-D2F63713AB2E}"
 	ProjectSection(SolutionItems) = preProject

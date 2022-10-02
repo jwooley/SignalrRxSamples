@@ -16,7 +16,9 @@ namespace MvcDrag
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
+            services.AddSignalR()
+                //.AddAzureSignalR()
+                ;
             services.AddControllersWithViews();
         }
 
